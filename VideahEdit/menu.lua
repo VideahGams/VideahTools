@@ -7,8 +7,8 @@ function menu.load()
 	menu.titletype = "image"
 
 	menu.image = "data/images/menubg.png"
-	menu.options = {"Start", "Options", "Customize", "Quit"}
-	menu.optionsstate = {"editor", "options", "customize", "quit"}
+	menu.options = {"Start", "Quit"}
+	menu.optionsstate = {"editor", "quit"}
 
 	menu.type = "scrolling_tiled"
 	menu.scrolldirection = "left"

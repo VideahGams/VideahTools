@@ -26,6 +26,7 @@ require 'global'
 require 'input'
 require 'options'
 require 'cursor'
+require 'editor'
 
 ---------------------------------------------------------------------------------------------------
 -- Libraries
