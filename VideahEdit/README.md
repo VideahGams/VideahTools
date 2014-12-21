@@ -6,7 +6,7 @@ Work in Progress Editor for VideahEngine
 
  * Nothing
 
-## Features Needing Implimented
+## Features Needing Implemented
 
  * Everything
 
