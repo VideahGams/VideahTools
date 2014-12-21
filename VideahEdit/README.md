@@ -1,4 +1,4 @@
-![](https://i.imgur.com/bQYMoGm.png)
+![](https://i.imgur.com/Zmnen2v.png)
 
 Work in Progress Editor for VideahEngine
 
