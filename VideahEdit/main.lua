@@ -52,6 +52,8 @@ function love.load()
 
 	love.graphics.setBackgroundColor(35, 65, 85)
 
+	editor.load()
+
 	map.load()
 
 	hud.load()
@@ -88,6 +90,8 @@ function love.draw()
 
 		end)
 
+		editor.draw()
+
 		camera:unset()
 
 		hud.draw()
@@ -119,6 +123,7 @@ function love.update(dt)
 		map.update(dt)
 		camera.update(dt)
 		lighting.update(dt)
+		editor.update(dt)
 		hud.update(dt)
 		--love.mouse.setVisible(false)
 		
