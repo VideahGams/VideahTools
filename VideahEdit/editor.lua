@@ -15,8 +15,6 @@ function editor.load()
     end
 
     local debugpanel = loveframes.Create("panel")
-    panel.Draw = function()
-	end
 
     botpanel:AddTab("Test", panel, "Test")
     botpanel:AddTab("Debug", debugpanel)
