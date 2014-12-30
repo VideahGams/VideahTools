@@ -77,7 +77,7 @@ function love.draw()
 
 		lighting.world:draw(function()
 
-		love.graphics.setColor(35, 65, 85)
+		love.graphics.setColor(0, 0, 0)
 
 		love.graphics.rectangle("fill", camera.x, camera.y, global.screenWidth, global.screenHeight )
 
