@@ -91,6 +91,8 @@ function love.draw()
 
 		camera:unset()
 
+		loveframes.draw()
+
 	end
 
 	if state:isStateEnabled("splash") then
@@ -119,6 +121,7 @@ function love.update(dt)
 		camera.update(dt)
 		lighting.update(dt)
 		editor.update(dt)
+		loveframes.update(dt)
 		
 	end
 
