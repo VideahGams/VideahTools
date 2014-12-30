@@ -13,7 +13,6 @@ m_math 		= require 'util/math'
 m_collide 	= require 'util/collide'
 socket = require 'socket'
 
-require 'menu'
 require 'fonts'
 require 'map'
 require 'camera'
@@ -25,7 +24,6 @@ require 'lighting'
 require 'global'
 require 'input'
 require 'options'
-require 'cursor'
 require 'editor'
 
 ---------------------------------------------------------------------------------------------------
@@ -52,10 +50,6 @@ function love.load()
 
 	love.mouse.setGrabbed(true)	
 
-	cursor.load()
-
-	love.mouse.setCursor(cursor.cursor)
-
 	love.graphics.setBackgroundColor(35, 65, 85)
 
 	map.load()
@@ -69,8 +63,6 @@ function love.load()
 	font.load()
 	
 	input.load()
-
-	menu.load()
 
 	print("Welcome to VideahEdit " .. global.version .. " !")
 
@@ -86,7 +78,11 @@ function love.draw()
 
 		lighting.world:draw(function()
 
+		love.graphics.setColor(35, 65, 85)
+
 		love.graphics.rectangle("fill", camera.x, camera.y, global.screenWidth, global.screenHeight )
+
+		love.graphics.setColor(255, 255, 255)
 
 		map.draw()
 
@@ -101,14 +97,6 @@ function love.draw()
 	if state:isStateEnabled("splash") then
 
 		splash.draw()
-
-	end
-
-	if state:isStateEnabled("menu") then
-
-		menu.draw()
-
-		loveframes.draw()
 
 	end
 
@@ -142,24 +130,9 @@ function love.update(dt)
 
 	end
 
-	if state:isStateEnabled("menu") or state:isStateEnabled("options") then
-
-		menu.update(dt)
-		loveframes.update()
-		love.mouse.setVisible(true)
-		love.mouse.setCursor(cursor.cursor)
-
-	end
-
 	if state:isStateEnabled("options") then
 
 		loveframes.SetState("options")
-
-	end
-
-	if state:isStateEnabled("menu") then
-
-		loveframes.SetState("menu")
 
 	end
 
@@ -178,7 +151,7 @@ function love.keypressed(key, isrepeat)
 	if state:isStateEnabled("splash") == false then
 		if key == "escape" then
 
-			state:changeState("menu")
+			love.event.quit()
 
 		end
 	end

@@ -59,7 +59,7 @@ function splash.draw()
 	-- Then change the state to something else (Like a main menu).
 
 	if splash.count > #splash.splashlist then
-		state:changeState("menu")
+		state:changeState("editor")
 	end
 
 end
