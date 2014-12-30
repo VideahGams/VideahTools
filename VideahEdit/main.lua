@@ -19,7 +19,6 @@ require 'camera'
 require 'state'
 require 'splash'
 require 'panel'
-require 'hud'
 require 'lighting'
 require 'global'
 require 'input'
@@ -55,8 +54,6 @@ function love.load()
 	editor.load()
 
 	map.load()
-
-	hud.load()
 
 	splash.load()
 
@@ -94,8 +91,6 @@ function love.draw()
 
 		camera:unset()
 
-		hud.draw()
-
 	end
 
 	if state:isStateEnabled("splash") then
@@ -124,21 +119,7 @@ function love.update(dt)
 		camera.update(dt)
 		lighting.update(dt)
 		editor.update(dt)
-		hud.update(dt)
-		--love.mouse.setVisible(false)
 		
-	end
-
-	if state:isStateEnabled("multiplayer") then
-
-		map.update(dt)
-
-	end
-
-	if state:isStateEnabled("options") then
-
-		loveframes.SetState("options")
-
 	end
 
 	if state:isStateEnabled("quit") then
