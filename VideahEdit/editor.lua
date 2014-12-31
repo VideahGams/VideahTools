@@ -164,6 +164,10 @@ function editor.axis.update(dt)
 
 		editor.axis.setPosition(editor.entities.selected:getPosition())
 
+		if camera:getMouseX() > editor.axis.x and camera:getMouseX() > editor.axis.y then
+			editor.entities.selected:setPosition(camera:getMousePosition())
+		end
+
 	end
 
 end
