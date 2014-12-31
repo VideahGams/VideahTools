@@ -89,7 +89,7 @@ function camera:getScale()
 end
 
 function camera:getMousePosition()
-  return love.mouse.getX() / self.scale + self.x, love.mouse.getY() / self.scaleY + self.y
+  return love.mouse.getX() / self.scale + self.x, love.mouse.getY() / self.scale + self.y
 end
 
 function camera:getMouseX()
