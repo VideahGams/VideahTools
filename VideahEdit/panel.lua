@@ -8,11 +8,12 @@ function panel.load()
 	panel.y = 15
 	panel.width = 250
 	panel.height = 34
-	panel.location = "upper-right"
+	panel.location = "upper-left"
 
 	panel:addVariable("global.fps", function() return global.fps end)
 	panel:addVariable("state", function() return state.currentState end)
 	panel:addVariable("map", function() return map.currentMap end)
+	panel:addVariable("editstate", function() return editor.currentstate end)
 
 end
 
