@@ -14,6 +14,7 @@ function panel.load()
 	panel:addVariable("state", function() return state.currentState end)
 	panel:addVariable("map", function() return map.currentMap end)
 	panel:addVariable("editstate", function() return editor.currentstate end)
+	panel:addVariable("Number of lights", function() return #editor.entities.lights end)
 
 end
 

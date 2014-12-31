@@ -45,7 +45,7 @@ function editor.createBotPanel()
 	lightbutton:SetText("Light")
 	lightbutton.OnClick = function(object)
 
-	editor.entities.lights[#editor.entities.lights + 1] = lighting.world:newLight()
+	editor.entities.lights[#editor.entities.lights + 1] = lighting.world:newLight(camera:getPositionX() + global.centerWidth - 75, camera:getPositionY() + global.centerHeight - 75)
 
 	end
 
@@ -96,8 +96,8 @@ function editor.draw()
 
 		local x, y, z = editor.entities.lights[i]:getPosition()
 
-		love.graphics.rectangle("fill", x - 10, y - 10, 20, 20)
-		
+		love.graphics.rectangle("fill", x - 8, y - 8, 16, 16)
+
 	end
 
 end
