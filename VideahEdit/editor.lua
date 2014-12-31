@@ -1,6 +1,13 @@
 editor = {}
 editor.entities = {}
 editor.entities.lights = {}
+editor.entities.selected = nil
+
+editor.axis = {}
+
+editor.axis.x = 0
+editor.axis.y = 0
+
 
 editor.currentstate = "select"
 
@@ -10,6 +17,41 @@ function editor.load()
 	editor.createSidePanel()
 
 end
+
+function editor.draw()
+
+	-- Draw something at every lights position
+	-- To give a visual indicator on where they are
+
+	for i=1, #editor.entities.lights do
+
+		local x, y, z = editor.entities.lights[i]:getPosition() -- Why there isn't an easier way of pruning the z axis, I don't know
+
+		love.graphics.rectangle("fill", x - 8, y - 8, 16, 16)
+
+	end
+
+	if editor.entities.selected ~= nil then
+
+		editor.axis.draw()
+
+	end
+
+end
+
+function editor.update(dt)
+
+	editor.axis.update(dt)
+
+end
+
+function editor:setSelected(object)
+
+	editor.entities.selected = object
+
+end
+
+-- Editor Interface --
 
 function editor.createBotPanel()
 
@@ -46,6 +88,8 @@ function editor.createBotPanel()
 	lightbutton.OnClick = function(object)
 
 	editor.entities.lights[#editor.entities.lights + 1] = lighting.world:newLight(camera:getPositionX() + global.centerWidth - 75, camera:getPositionY() + global.centerHeight - 75)
+
+	editor:setSelected(editor.entities.lights[#editor.entities.lights])
 
 	end
 
@@ -87,21 +131,39 @@ function editor.createSidePanel()
 	
 end
 
-function editor.draw()
 
-	-- Draw something at every lights position
-	-- To give a visual indicator on where they are
+-- Editor Axis --
 
-	for i=1, #editor.entities.lights do
+function editor.axis.draw()
 
-		local x, y, z = editor.entities.lights[i]:getPosition() -- Why there isn't an easier way of pruning the z axis, I don't know
+	love.graphics.setColor(0, 0, 255)
 
-		love.graphics.rectangle("fill", x - 8, y - 8, 16, 16)
+	love.graphics.rectangle("fill", editor.axis.x, editor.axis.y, 2, 2)
 
-	end
+	love.graphics.setColor(255, 0, 0)
+
+	love.graphics.rectangle("fill", editor.axis.x + 2, editor.axis.y, 64, 2)
+
+	love.graphics.setColor(0, 255, 0)
+
+	love.graphics.rectangle("fill", editor.axis.x, editor.axis.y - 64, 2, 64)
+
+	love.graphics.setColor(255, 255, 255)
 
 end
 
-function editor.update(dt)
+function editor.axis.setPosition(x, y)
+
+	editor.axis.x, editor.axis.y = x, y
+
+end
+
+function editor.axis.update(dt)
+
+	if editor.entities.selected ~= nil then
+
+		editor.axis.setPosition(editor.entities.selected:getPosition())
+
+	end
 
 end
