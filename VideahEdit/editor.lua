@@ -94,7 +94,7 @@ function editor.draw()
 
 	for i=1, #editor.entities.lights do
 
-		local x, y, z = editor.entities.lights[i]:getPosition()
+		local x, y, z = editor.entities.lights[i]:getPosition() -- Why there isn't an easier way of pruning the z axis, I don't know
 
 		love.graphics.rectangle("fill", x - 8, y - 8, 16, 16)
 
