@@ -34,6 +34,23 @@ function editor.createBotPanel()
     botpanel:AddTab("Tools", toolpanel)
     botpanel:AddTab("Debug", debugpanel)
 
+    -- Entity Creation [TEMP] --
+
+    local entityform = loveframes.Create("form", toolpanel)
+	entityform:SetLayoutType("vertical")
+	entityform:SetName("Create")
+
+	local lightbutton = loveframes.Create("button")
+	lightbutton:SetSize(50,50)
+	lightbutton:SetText("Light")
+	lightbutton.OnClick = function(object)
+
+	editor.entities.lights[#editor.entities.lights + 1] = lighting.world:newLight()
+
+	end
+
+	entityform:AddItem(lightbutton)
+
 end
 
 function editor.createSidePanel()
@@ -71,6 +88,17 @@ function editor.createSidePanel()
 end
 
 function editor.draw()
+
+	-- Draw something at every lights position
+	-- To give a visual indicator on where they are
+
+	for i=1, #editor.entities.lights do
+
+		local x, y, z = editor.entities.lights[i]:getPosition()
+
+		love.graphics.rectangle("fill", x - 10, y - 10, 20, 20)
+		
+	end
 
 end
 
