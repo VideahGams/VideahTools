@@ -136,19 +136,33 @@ end
 
 function editor.axis.draw()
 
+	-- Origin
+
 	love.graphics.setColor(0, 0, 255)
 
 	love.graphics.rectangle("fill", editor.axis.x, editor.axis.y, 2, 2)
+
+	-- X Axis
 
 	love.graphics.setColor(255, 0, 0)
 
 	love.graphics.rectangle("fill", editor.axis.x + 2, editor.axis.y, 64, 2)
 
+	util.drawTriangle("right", editor.axis.x + 64, editor.axis.y - 4, 10, 10)
+
+	-- Y Axis
+
 	love.graphics.setColor(0, 255, 0)
 
 	love.graphics.rectangle("fill", editor.axis.x, editor.axis.y - 64, 2, 64)
 
+	util.drawTriangle("up", editor.axis.x - 4, editor.axis.y - 64, 10, 10)
+
+	-- Reset Color
+
 	love.graphics.setColor(255, 255, 255)
+
+	--love.graphics.polygon('fill', editor.axis.x + 10, editor.axis.y + 10, editor.axis.x + 20, editor.axis.y + 10, editor.axis.x + 15, editor.axis.y - 5)
 
 end
 
@@ -164,8 +178,17 @@ function editor.axis.update(dt)
 
 		editor.axis.setPosition(editor.entities.selected:getPosition())
 
-		if camera:getMouseX() > editor.axis.x and camera:getMouseX() > editor.axis.y then
+		if camera:getMouseX() > editor.axis.x and camera:getMouseY() > editor.axis.y and camera:getMouseX() < (editor.axis.x + 64) and camera:getMouseY() < (editor.axis.y + 2) then
+
+			hand = love.mouse.getSystemCursor("hand")
+
+			love.mouse.setCursor(hand)
 			editor.entities.selected:setPosition(camera:getMousePosition())
+
+		else
+
+			--love.mouse.setCursor(love.mouse.getSystemCursor("arrow"))
+
 		end
 
 	end

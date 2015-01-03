@@ -1,3 +1,5 @@
+-- Some functions I find useful for things
+
 util = {}
 
 function util.getTimestamp()
@@ -38,4 +40,29 @@ end
 
 function util.round(num)
 	return math.floor(num + 0.5)
+end
+
+-- Pretty bad triangle function
+-- Needs rethinking, as positioning isn't exactly xy based.
+
+function util.drawTriangle(direction, x, y, width, height)
+
+	if direction == "up" then
+
+		love.graphics.polygon('fill', x, y, x + width, y, x + (width / 2), y - height)
+
+	elseif direction == "down" then
+
+		love.graphics.polygon('fill', x, y, x + width, y, x + (width / 2), y + height)
+
+	elseif direction == "right" then
+
+		love.graphics.polygon('fill', x, y, x, y + height, x + width, y + (height / 2))
+
+	elseif direction == "left" then
+
+		love.graphics.polygon('fill', x, y, x, y + height, x - width, y + (height / 2))
+
+	end
+
 end
